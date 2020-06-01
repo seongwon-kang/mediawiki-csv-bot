@@ -1,8 +1,9 @@
 package io.hardplant.cmmn;
+
+import java.util.List;
+
 /**
- * type: P or S
- * id: Unique ID or "select"
- * name: name of commu
+ * type: P or S id: Unique ID or "select" name: name of commu
  */
 public class CommuTable {
     public String type;
@@ -10,6 +11,16 @@ public class CommuTable {
     public String name;
     public String info;
     public String translator;
+    
+    public List<CommuRow> commus;
+
+    public List<CommuRow> getCommus() {
+        return this.commus;
+    }
+
+    public void setCommus(List<CommuRow> commus) {
+        this.commus = commus;
+    }
 
     public String getType() {
         return this.type;
@@ -51,4 +62,6 @@ public class CommuTable {
         this.translator = translator;
     }
 
+    public CommuTable() {
+    }
 }

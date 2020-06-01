@@ -57,7 +57,7 @@ public class SheetDAO {
         return new AuthorizationCodeInstalledApp(flow, receiver).authorize("user");
     }
 
-    private void quickstart() throws Exception{
+    private void quickstart() throws Exception {
         // Build a new authorized API client service.
         final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
         final String spreadsheetId = "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms";
@@ -76,5 +76,4 @@ public class SheetDAO {
             }
         }
     }
-
 }
