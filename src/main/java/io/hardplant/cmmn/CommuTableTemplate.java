@@ -5,24 +5,35 @@ public class CommuTableTemplate {
 
     public CommuTableTemplate() {
         template.append("{{커뮤테이블|");
-
     }
 
-    String toContent() {
+    public CommuTableTemplate setTable(CommuTable table) {
+        return this;
+    }
+
+    public String toContent() {
         template.append("}}");
         return template.toString();
     }
 
-    CommuTableTemplate title() {
+    public CommuTableTemplate title() {
         template.append("");
 
         return this;
     }
 
-    CommuTableTemplate addRow(String character, String text) {
+    public CommuTableTemplate addRow(CommuRow row) {
+        addRow(row.id,row.name, row.text, row.trans);
+
+        return this;
+    }
+
+    public CommuTableTemplate addRow(String id,String character, String text, String trans) {
         template.append("{{커뮤대사|")
+            .append(id).append("|")
             .append(character).append("|")
-            .append(text)
+            .append(text).append("|")
+            .append(trans).append("|")
             .append("}}");
 
         return this;
