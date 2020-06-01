@@ -19,7 +19,7 @@ public class CsvController {
 
         String csvContent = "";
 
-        csvUploaderService.upload(id, pwd, csvContent);
+        csvUploaderService.uploadWikiFromCsv(id, pwd, csvContent);
 
         return "";
     }

@@ -1,11 +1,16 @@
 package io.hardplant.uploader.service.impl;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import io.hardplant.uploader.service.CommuTable;
+import io.hardplant.cmmn.CommuRow;
+import io.hardplant.cmmn.CommuTable;
+import io.hardplant.cmmn.CommuTableTemplate;
+import io.hardplant.cmmn.WikiEditor;
 import io.hardplant.uploader.service.CsvUploaderService;
 
 @Service
@@ -17,7 +22,27 @@ public class CsvUploaderServiceImpl implements CsvUploaderService{
     private CsvDAO csvDao;
 
     @Override
-    public List<CommuTable> upload(String id, String pwd, String csvPath) {
-        return csvDao.readTableWithRowname(commuTableRow, csvPath);
+    public boolean uploadWikiFromCsv(String id, String pwd, String csvPath) {
+        WikiEditor wikiEditor = new WikiEditor(id, pwd);
+        Path path = Paths.get(csvPath);
+
+        CommuTable commuTable = new CommuTable();
+        List<CommuRow> commuData = csvDao.readTableWithRowname(commuTableRow, csvPath);
+        
+        commuTable.setId(path.getFileName().toString());
+        
+        CommuTableTemplate template = new CommuTableTemplate();
+        
+        for (CommuRow row : commuData) {
+            if (row.id == "info") {
+                commuTable.setInfo(row.name);
+            } else {
+                template.addRow(row);
+            }
+        }
+
+        wikiEditor.overwrite(csvPath, template.toContent(), "봇에 의한 자동 업로드");
+
+        return true;
     }
 }

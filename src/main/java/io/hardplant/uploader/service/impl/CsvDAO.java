@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 import au.com.bytecode.opencsv.CSVReader;
 import au.com.bytecode.opencsv.bean.ColumnPositionMappingStrategy;
 import au.com.bytecode.opencsv.bean.CsvToBean;
-import io.hardplant.uploader.service.CommuTable;
+import io.hardplant.cmmn.CommuRow;
 
 @Repository
 public class CsvDAO {
@@ -39,17 +39,17 @@ public class CsvDAO {
         return data;
     }
     
-    public List<CommuTable> readTableWithRowname(String[] rowNames, String filename) {
+    public List<CommuRow> readTableWithRowname(String[] rowNames, String filename) {
  
-        List<CommuTable> data = null;
+        List<CommuRow> data = null;
  
         try {
             CSVReader reader = new CSVReader(new FileReader(filename));
  
-            ColumnPositionMappingStrategy<CommuTable> start = new ColumnPositionMappingStrategy<CommuTable>();
-            start.setType(CommuTable.class);
+            ColumnPositionMappingStrategy<CommuRow> start = new ColumnPositionMappingStrategy<CommuRow>();
+            start.setType(CommuRow.class);
             start.setColumnMapping(rowNames);
-            CsvToBean<CommuTable> csv = new CsvToBean<CommuTable>();
+            CsvToBean<CommuRow> csv = new CsvToBean<CommuRow>();
             data = csv.parse(start, reader);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
