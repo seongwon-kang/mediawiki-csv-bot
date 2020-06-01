@@ -36,7 +36,6 @@ public class CsvDAOTest {
         assertEquals("aaaa", rows.get(1).getName());
         assertEquals("bbbb", rows.get(1).getText());
         assertEquals("cccc", rows.get(1).getTrans());
-
     }
 }
     
