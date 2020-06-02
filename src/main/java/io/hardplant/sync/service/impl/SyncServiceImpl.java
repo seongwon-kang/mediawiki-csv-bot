@@ -25,27 +25,15 @@ public class SyncServiceImpl implements SyncService {
 
     @Override
     public int syncWikiWithSheet(String sheetName, String id, String pwd) {
-        try {
-            List<List<Object>> datas = sheetDao.getDatas(sheetName);
-            
-            List<CommuTable> tables = converter.sheetToTableDatas(datas);
-            
-            wikiEditor.logon("", "");
-            
-            for (CommuTable table : tables) {
-                CommuTableTemplate template = new CommuTableTemplate();
-                template.setTable(table);
-                
-                wikiEditor.overwrite(table.rawName, template.toContent(), "자동 수정됨");
-            }
+        wikiEditor.logon("", "");
+        List<CommuTableTemplate> templates = getTemplateFromSheet(sheetName);
 
-            return tables.size();
-
-        } catch (Exception e) {
-            e.printStackTrace();
+        // TODO: 변경 플래그 추가
+        for (CommuTableTemplate template : templates) {
+            wikiEditor.overwrite(sheetName + "\\" + template.title, template.toContent(), "봇에 의한 자동 수정");
         }
             
-        return 0;
+        return templates.size();
     }
 
     @Override
