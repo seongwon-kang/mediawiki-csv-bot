@@ -5,10 +5,11 @@ import java.util.List;
 import io.hardplant.cmmn.CommuTableTemplate;
 
 public interface SyncService {
+	boolean logonWiki(String id, String pwd);
 
-	int syncWikiWithSheet(String sheetName, String id, String pwd);
+	int syncWikiWithSheet(String sheetName);
 
-	public int syncWikiFromTemplates(List<CommuTableTemplate> templates, String id, String pwd);
+	public int syncWikiFromTemplates(List<CommuTableTemplate> templates);
 
 	List<CommuTableTemplate> getTemplateFromSheet(String string);
     

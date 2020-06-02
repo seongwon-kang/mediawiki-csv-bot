@@ -40,7 +40,9 @@ public class SyncServiceImplTest {
 
         assertEquals("P\\SR-1\\ショッピング日和", templates.get(0).title);
         
-        syncService.syncWikiFromTemplates(templates, "Hardplant2", "1q2w3e4r");
+        syncService.logonWiki("Hardplant2", "1q2w3e4r");
+        
+        syncService.syncWikiFromTemplates(templates);
     }
 
     private List<CommuTableTemplate> getTestTemplates() {

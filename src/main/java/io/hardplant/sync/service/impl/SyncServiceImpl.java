@@ -29,20 +29,26 @@ public class SyncServiceImpl implements SyncService {
     SheetTableConverter converter;
 
     @Override
-    public int syncWikiWithSheet(String sheetName, String id, String pwd) {
+    public boolean logonWiki(String id, String pwd) {
+        wikiEditor.logon(id, pwd);
+
+        if (!wikiEditor.isLoggedOn) {
+            logger.error("Wiki not logged on");
+            return false;
+        }
+        
+        return true;
+    }
+
+    @Override
+    public int syncWikiWithSheet(String sheetName) {
         List<CommuTableTemplate> templates = getTemplateFromSheet(sheetName);
             
-        return syncWikiFromTemplates(templates, id, pwd);
+        return syncWikiFromTemplates(templates);
     }
     
     @Override
-    public int syncWikiFromTemplates(List<CommuTableTemplate> templates, String id, String pwd) {
-        wikiEditor.logon(id, pwd);
-        if (!wikiEditor.isLoggedOn) {
-            logger.error("Wiki not logged on");
-            
-            return 0;
-        }
+    public int syncWikiFromTemplates(List<CommuTableTemplate> templates) {
 
         for (CommuTableTemplate template : templates) {
             wikiEditor.overwrite(template.title, template.toContent(), "봇에 의한 자동 수정");

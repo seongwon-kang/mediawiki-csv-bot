@@ -46,8 +46,7 @@ public class WikiEditor {
 
     public boolean overwrite(String docTitle, String docText, String editSummary) {
         if (isLoggedOn) {
-            wiki.edit(docTitle, docText, editSummary);
-            return true;
+            return wiki.edit(docTitle, docText, editSummary);
 
         } else {
             logger.error("not logged on");

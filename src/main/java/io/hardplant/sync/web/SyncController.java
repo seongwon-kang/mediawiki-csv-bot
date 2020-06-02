@@ -23,7 +23,7 @@ public class SyncController {
     private SyncService syncService;
 
     public String syncWikiWithSheet() {
-        int affected = syncService.syncWikiWithSheet("사쿠라기 마노", "", "");
+        int affected = syncService.syncWikiWithSheet("사쿠라기 마노");
         
         logger.info("syncWiki: " + affected);
 
