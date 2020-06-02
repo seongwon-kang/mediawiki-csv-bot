@@ -7,7 +7,7 @@ public class CommuTableTemplate {
     private CommuTable table;
 
     public CommuTableTemplate() {
-        template.append("{{커뮤테이블|");
+        template.append("{{{커뮤테이블|");
     }
 
     public CommuTableTemplate setTable(CommuTable table) {
@@ -17,7 +17,7 @@ public class CommuTableTemplate {
 
         if (table.commus == null)
             return this;
-            
+
         if (table.info != null) {
             template.append("|info = " + table.info);
         }
@@ -34,7 +34,7 @@ public class CommuTableTemplate {
     }
 
     public String toContent() {
-        template.append("}}");
+        template.append("}}}");
         return template.toString();
     }
 
@@ -53,8 +53,8 @@ public class CommuTableTemplate {
     }
 
     public CommuTableTemplate addRow(String id, String character, String text, String trans) {
-        template.append("\n  {{커뮤대사|").append(id).append("|").append(character).append("|").append(text).append("|")
-                .append(trans).append("|").append("}}");
+        template.append("\n  {{{커뮤대사|").append(id).append("|").append(character).append("|").append(text).append("|")
+                .append(trans).append("|").append("}}}");
 
         return this;
     }
