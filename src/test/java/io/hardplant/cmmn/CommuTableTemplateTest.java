@@ -9,6 +9,8 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import io.hardplant.cmmn.impl.CommuTable;
+import io.hardplant.cmmn.impl.CommuTableTemplate;
 import io.hardplant.sheet_parser.SheetTableConverter;
 
 public class CommuTableTemplateTest {

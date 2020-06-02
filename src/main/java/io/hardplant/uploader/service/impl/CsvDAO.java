@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 import au.com.bytecode.opencsv.CSVReader;
 import au.com.bytecode.opencsv.bean.ColumnPositionMappingStrategy;
 import au.com.bytecode.opencsv.bean.CsvToBean;
-import io.hardplant.cmmn.CommuRow;
+import io.hardplant.cmmn.impl.CommuRow;
 
 @Repository
 public class CsvDAO {

@@ -7,10 +7,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import io.hardplant.cmmn.CommuRow;
-import io.hardplant.cmmn.CommuTable;
-import io.hardplant.cmmn.CommuTableTemplate;
 import io.hardplant.cmmn.WikiEditor;
+import io.hardplant.cmmn.impl.CommuRow;
+import io.hardplant.cmmn.impl.CommuTable;
+import io.hardplant.cmmn.impl.CommuTableTemplate;
 import io.hardplant.uploader.service.CsvUploaderService;
 
 @Service

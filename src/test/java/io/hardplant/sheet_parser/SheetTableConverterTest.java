@@ -7,8 +7,8 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import io.hardplant.cmmn.CommuRow;
-import io.hardplant.cmmn.CommuTable;
+import io.hardplant.cmmn.impl.CommuRow;
+import io.hardplant.cmmn.impl.CommuTable;
 
 public class SheetTableConverterTest {
 

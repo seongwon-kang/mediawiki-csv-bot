@@ -1,4 +1,4 @@
-package io.hardplant.cmmn;
+package io.hardplant.cmmn.impl;
 
 public class CommuTableTemplate {
     public String title;

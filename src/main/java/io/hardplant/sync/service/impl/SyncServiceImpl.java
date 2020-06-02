@@ -8,9 +8,9 @@ import javax.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import io.hardplant.cmmn.CommuTable;
-import io.hardplant.cmmn.CommuTableTemplate;
 import io.hardplant.cmmn.WikiEditor;
+import io.hardplant.cmmn.impl.CommuTable;
+import io.hardplant.cmmn.impl.CommuTableTemplate;
 import io.hardplant.sheet_parser.SheetDAO;
 import io.hardplant.sheet_parser.SheetTableConverter;
 import io.hardplant.sync.service.SyncService;

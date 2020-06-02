@@ -5,8 +5,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import io.hardplant.cmmn.CommuRow;
-import io.hardplant.cmmn.CommuTable;
+import io.hardplant.cmmn.impl.CommuRow;
+import io.hardplant.cmmn.impl.CommuTable;
 
 @Component
 public class SheetTableConverter {

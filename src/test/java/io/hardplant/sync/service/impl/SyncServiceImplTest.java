@@ -13,8 +13,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 
-import io.hardplant.cmmn.CommuTable;
-import io.hardplant.cmmn.CommuTableTemplate;
+import io.hardplant.cmmn.impl.CommuTable;
+import io.hardplant.cmmn.impl.CommuTableTemplate;
 import io.hardplant.sheet_parser.SheetTableConverter;
 import io.hardplant.sync.service.SyncService;
 

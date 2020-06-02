@@ -9,7 +9,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import io.hardplant.cmmn.CommuRow;
+import io.hardplant.cmmn.impl.CommuRow;
 
 public class CsvDAOTest {
     private String testPath;
