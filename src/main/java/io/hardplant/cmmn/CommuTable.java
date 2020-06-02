@@ -1,21 +1,40 @@
 package io.hardplant.cmmn;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * type: P or S id: Unique ID or "select" name: name of commu
  */
 public class CommuTable {
+    private static final Logger logger = LoggerFactory.getLogger(CommuTable.class);
+
     public String type;
     public String id;
     public String name;
     public String info;
     public String translator;
     
-    public List<CommuRow> commus;
+    public List<CommuRow> commus = new ArrayList<>();
 
     public List<CommuRow> getCommus() {
         return this.commus;
+    }
+
+    public void fileheaderToInfo(String nameString) {
+        if (!nameString.startsWith("#FILENAME")) {
+            logger.error("Invalid arugment:", nameString);
+        }
+        String[] names = nameString.split(":");
+        String[] args = names[1].split("\\\\");
+
+        type = args[0].trim();
+        id = args[1];
+        // prune ".csv"
+        name = args[2].substring(0, args[2].length() - 4);
     }
 
     public void setCommus(List<CommuRow> commus) {

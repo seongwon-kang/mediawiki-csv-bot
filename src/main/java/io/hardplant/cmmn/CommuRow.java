@@ -37,5 +37,12 @@ public class CommuRow {
     public void setTrans(String trans) {
         this.trans = trans;
     }
+
+    public CommuRow(String id, String name, String text, String trans) {
+        this.id = id;
+        this.name = name;
+        this.text = text;
+        this.trans = trans;
+    }
     
 }
