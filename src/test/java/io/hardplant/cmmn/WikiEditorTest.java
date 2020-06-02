@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 public class WikiEditorTest {
 
     @Test
-    public void testFileUploadsFails() {
+    public void testOverwriteFails() {
         WikiEditor editor = new WikiEditor(new Wiki.Builder().withDomain("publictestwiki.com").build());
 
         // Not Logged On
@@ -17,7 +17,7 @@ public class WikiEditorTest {
     }
     
     @Test
-    public void testFileUploadsWithLogon() {
+    public void testOverwriteWithLogon() {
         WikiEditor editor = new WikiEditor(new Wiki.Builder().withDomain("publictestwiki.com").build());
         editor.logon("Hardplant2", "1q2w3e4r");
         assertTrue(editor.overwrite("bottest", "test", "봇 자동 업로드"), "로그인 실패");
