@@ -11,7 +11,7 @@ public class CommuTableTemplate implements ITemplate {
     private CommuTable table;
 
     public CommuTableTemplate() {
-        template.append("{{{커뮤테이블");
+        template.append("{{커뮤테이블");
     }
 
     public CommuTableTemplate setTable(CommuTable table) {
@@ -27,7 +27,7 @@ public class CommuTableTemplate implements ITemplate {
         }
 
         if (table.translator != null) {
-            template.append("|translator = " + table.translator + "|");
+            template.append("|translator = " + table.translator + "|text =");
         }
 
         for (CommuRow row : table.commus) {
@@ -38,7 +38,7 @@ public class CommuTableTemplate implements ITemplate {
     }
 
     public String toContent() {
-        template.append("\n}}}");
+        template.append("\n}}\n\n\n{{출처 한패시트|origin=https://docs.google.com/spreadsheets/d/12NpZ_Tq0OMAePUn-Wuu9lH0202L5f9nvJc1pEI5CM8M}}");
         return template.toString();
     }
 
@@ -61,8 +61,8 @@ public class CommuTableTemplate implements ITemplate {
     }
 
     public CommuTableTemplate addRow(String id, String character, String text, String trans) {
-        template.append("\n  {{{커뮤대사|").append(id).append("|").append(character).append("|").append(text).append("|")
-                .append(trans).append("|").append("}}}");
+        template.append("\n {{커뮤대사|id=").append(id).append("|name=").append(character).append("|text=").append(text.replaceAll("\\", "")).append("|trans=")
+                .append(trans.replace("\\", "")).append("|").append("}}");
 
         return this;
     }

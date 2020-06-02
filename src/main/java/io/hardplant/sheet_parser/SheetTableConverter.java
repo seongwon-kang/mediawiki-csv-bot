@@ -35,7 +35,11 @@ public class SheetTableConverter {
                     commuTable.info = row.get(2).toString();
                 } else if (row.get(1).toString().startsWith("译者")) {
                     // translator
-                    commuTable.translator = row.get(1).toString();
+                    try {
+                        commuTable.translator = row.get(2).toString();
+                    } catch (Exception e) {
+                        commuTable.translator = "";
+                    }
                 } else {
                     String id = row.get(1).toString();
                     String name = row.get(2).toString();
