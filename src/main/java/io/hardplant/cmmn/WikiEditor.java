@@ -3,7 +3,9 @@ package io.hardplant.cmmn;
 import org.fastily.jwiki.core.Wiki;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
+@Component
 public class WikiEditor {
     public boolean isLoggedOn;
     private Wiki wiki;

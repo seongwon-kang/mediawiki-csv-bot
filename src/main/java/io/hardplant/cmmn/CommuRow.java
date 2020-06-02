@@ -1,5 +1,6 @@
 package io.hardplant.cmmn;
 
+
 public class CommuRow {
     public String id;
     public String name;

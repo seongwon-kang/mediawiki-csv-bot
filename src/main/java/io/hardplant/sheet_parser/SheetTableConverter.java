@@ -3,9 +3,12 @@ package io.hardplant.sheet_parser;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import io.hardplant.cmmn.CommuRow;
 import io.hardplant.cmmn.CommuTable;
 
+@Component
 public class SheetTableConverter {
 
     public List<CommuTable> sheetToTableDatas(List<List<Object>> datas) {
