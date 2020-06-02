@@ -32,13 +32,13 @@ public class CommuTable {
         String[] names = nameString.split(":");
         rawName = names[1].trim();
         rawName = rawName.substring(0, rawName.length() - 4);
-        
-        String[] args = names[1].split("\\\\");
 
-        type = args[0].trim();
-        id = args[1];
-        // prune ".csv"
-        name = args[2].substring(0, args[2].length() - 4);
+        // String[] args = names[1].split("\\\\");
+
+        // type = args[0].trim();
+        // id = args[1];
+        // // prune ".csv"
+        // name = args[2].substring(0, args[2].length() - 4);
     }
 
     public void setCommus(List<CommuRow> commus) {

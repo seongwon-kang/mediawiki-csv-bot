@@ -33,7 +33,7 @@ public class SheetTableConverter {
                 } else if (row.get(1).toString().startsWith("info")) {
                     // json info
                     commuTable.info = row.get(2).toString();
-                } else if (row.get(0).toString().startsWith("译者")) {
+                } else if (row.get(1).toString().startsWith("译者")) {
                     // translator
                     commuTable.translator = row.get(1).toString();
                 } else {

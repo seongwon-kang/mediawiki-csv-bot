@@ -1,5 +1,6 @@
 package io.hardplant.sync.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -39,12 +40,33 @@ public class SyncServiceImpl implements SyncService {
             }
 
             return tables.size();
-            
+
         } catch (Exception e) {
             e.printStackTrace();
         }
             
         return 0;
+    }
+
+    @Override
+    public List<CommuTableTemplate> getTemplateFromSheet(String sheetName){
+        List<CommuTableTemplate> templates = new ArrayList<>();
+        try {
+            List<List<Object>> datas = sheetDao.getDatas(sheetName);
+                
+            List<CommuTable> tables = converter.sheetToTableDatas(datas);
+            
+            for (CommuTable table : tables) {
+                CommuTableTemplate template = new CommuTableTemplate();
+                template.setTable(table);
+
+                templates.add(template);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return templates;
     }
 
 }

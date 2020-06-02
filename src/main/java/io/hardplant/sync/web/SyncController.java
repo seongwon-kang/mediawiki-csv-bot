@@ -1,5 +1,7 @@
 package io.hardplant.sync.web;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.slf4j.Logger;
@@ -25,6 +27,12 @@ public class SyncController {
         
         logger.info("syncWiki: " + affected);
 
+        return "true";
+    }
+
+    public String getTemplateFromSheet() {
+        List<?> affected = syncService.getTemplateFromSheet("사쿠라기 마노");
+        
         return "true";
     }
     
