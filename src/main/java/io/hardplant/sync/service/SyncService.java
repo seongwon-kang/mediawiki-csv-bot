@@ -8,6 +8,8 @@ public interface SyncService {
 
 	int syncWikiWithSheet(String sheetName, String id, String pwd);
 
+	public int syncWikiFromTemplates(List<CommuTableTemplate> templates, String id, String pwd);
+
 	List<CommuTableTemplate> getTemplateFromSheet(String string);
     
 }

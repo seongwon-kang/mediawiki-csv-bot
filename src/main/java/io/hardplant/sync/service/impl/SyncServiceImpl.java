@@ -33,7 +33,7 @@ public class SyncServiceImpl implements SyncService {
         wikiEditor.logon(id, pwd);
         if (!wikiEditor.isLoggedOn) {
             logger.error("Wiki not logged on");
-            
+
             return 0;
         }
 
@@ -41,6 +41,22 @@ public class SyncServiceImpl implements SyncService {
         // TODO: 변경 플래그 추가
         for (CommuTableTemplate template : templates) {
             wikiEditor.overwrite(sheetName + "\\" + template.title, template.toContent(), "봇에 의한 자동 수정");
+        }
+            
+        return templates.size();
+    }
+    
+    @Override
+    public int syncWikiFromTemplates(List<CommuTableTemplate> templates, String id, String pwd) {
+        wikiEditor.logon(id, pwd);
+        if (!wikiEditor.isLoggedOn) {
+            logger.error("Wiki not logged on");
+            
+            return 0;
+        }
+
+        for (CommuTableTemplate template : templates) {
+            wikiEditor.overwrite(template.title, template.toContent(), "봇에 의한 자동 수정");
         }
             
         return templates.size();
