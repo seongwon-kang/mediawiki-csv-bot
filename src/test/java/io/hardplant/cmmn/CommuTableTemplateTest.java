@@ -1,57 +1,50 @@
-package io.hardplant.sheet_parser;
+package io.hardplant.cmmn;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
-
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import io.hardplant.cmmn.CommuRow;
-import io.hardplant.cmmn.CommuTable;
+import io.hardplant.sheet_parser.SheetTableConverter;
 
-public class SheetTableConverterTest {
+public class CommuTableTemplateTest {
+
+    @BeforeEach
+    public void setup() {
+
+    }
 
     @Test
-    public void testConvert() {
+    public void testCommuTableToTemplate() {
+        CommuTableTemplate template = new CommuTableTemplate();
+        List<CommuTable> tables = getTables();
+        CommuTable table = tables.get(0);
+
+        template.setTable(table);
+
+        assertEquals("P\\SR-1\\ショッピング日和", template.title);
+        
+        String result = template.toContent();
+
+        assertTrue(result.contains("커뮤대사"));
+    }
+
+    private List<CommuTable> getTables() {
         SheetTableConverter converter = new SheetTableConverter();
 
         List<List<Object>> datas = getMockData();
 
-        List<CommuTable> commutables = converter.sheetToTableDatas(datas);
-
-        assertEquals(2, commutables.size());
-        // Commu 1
-        CommuTable table1 = commutables.get(0);
-        assertEquals("P", table1.type);
-        assertEquals("SR-1", table1.id);
-        assertEquals("ショッピング日和", table1.name);
-        assertEquals(2, table1.commus.size());
-        assertEquals("", table1.translator);
-
-        CommuRow table1Commu1 = table1.commus.get(0);
-
-        assertEquals("select", table1Commu1.id);
-        assertEquals("", table1Commu1.name);
-        assertEquals("似合うと思うな", table1Commu1.text);
-        assertEquals("어울린다고 생각해.", table1Commu1.trans);
-
-        CommuRow table1Commu2 = table1.commus.get(1);
-
-        assertEquals("0000000000000", table1Commu2.id);
-        assertEquals("", table1Commu2.name);
-        assertEquals("★選択肢①【似合うと思うな】", table1Commu2.text);
-        assertEquals("★선택지①【어울린다고 생각해】", table1Commu2.trans);
-
-        // Commu 2
+        return converter.sheetToTableDatas(datas);
     }
 
     private List<List<Object>> getMockData() {
-        
+
         List<List<Object>> data = new ArrayList<>();
-        
+
         for (int i = 0; i < 15; i++) {
             data.add(new ArrayList<>());
         }
@@ -79,11 +72,11 @@ public class SheetTableConverterTest {
         data.get(4).add("");
         data.get(4).add("info");
         data.get(4).add("produce_events/200100301.json");
-        
+
         data.get(5).add("译者");
 
         data.get(6).add("#EOF");
-        
+
         data.get(7).add("#FILENAME: P\\SR-1\\ショッピング日和.csv");
 
         data.get(8).add("");
@@ -111,9 +104,8 @@ public class SheetTableConverterTest {
         data.get(12).add("译者");
 
         data.get(13).add("#EOF");
-        
+
         return data;
     }
 
 }
-    

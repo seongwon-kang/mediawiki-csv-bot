@@ -14,6 +14,7 @@ public class CommuTable {
 
     public String type;
     public String id;
+    public String rawName;
     public String name;
     public String info;
     public String translator;
@@ -29,6 +30,9 @@ public class CommuTable {
             logger.error("Invalid arugment:", nameString);
         }
         String[] names = nameString.split(":");
+        rawName = names[1].trim();
+        rawName = rawName.substring(0, rawName.length() - 4);
+        
         String[] args = names[1].split("\\\\");
 
         type = args[0].trim();
