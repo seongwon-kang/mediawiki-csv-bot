@@ -23,7 +23,7 @@ public class CommuTableTemplate {
         }
 
         if (table.translator != null) {
-            template.append("|translator = " + table.translator);
+            template.append("|translator = " + table.translator + "|");
         }
 
         for (CommuRow row : table.commus) {
