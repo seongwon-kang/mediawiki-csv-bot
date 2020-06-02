@@ -1,5 +1,6 @@
 package io.hardplant.sync.service.impl;
 
+import org.fastily.jwiki.core.Wiki;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -18,7 +19,7 @@ public class TestConfig {
 
     @Bean
     public WikiEditor wikiEditor() {
-        return new WikiEditor();
+        return new WikiEditor(new Wiki.Builder().withDomain("publictestwiki.com").build());
     }
 
     @Bean
