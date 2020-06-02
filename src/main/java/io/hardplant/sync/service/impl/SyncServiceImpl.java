@@ -5,6 +5,9 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import io.hardplant.cmmn.CommuTable;
 import io.hardplant.cmmn.CommuTableTemplate;
 import io.hardplant.cmmn.WikiEditor;
@@ -13,6 +16,8 @@ import io.hardplant.sheet_parser.SheetTableConverter;
 import io.hardplant.sync.service.SyncService;
 
 public class SyncServiceImpl implements SyncService {
+
+    private static final Logger logger = LoggerFactory.getLogger(SyncService.class);
 
     @Resource
     SheetDAO sheetDao;
@@ -25,9 +30,14 @@ public class SyncServiceImpl implements SyncService {
 
     @Override
     public int syncWikiWithSheet(String sheetName, String id, String pwd) {
-        wikiEditor.logon("", "");
-        List<CommuTableTemplate> templates = getTemplateFromSheet(sheetName);
+        wikiEditor.logon(id, pwd);
+        if (!wikiEditor.isLoggedOn) {
+            logger.error("Wiki not logged on");
+            
+            return 0;
+        }
 
+        List<CommuTableTemplate> templates = getTemplateFromSheet(sheetName);
         // TODO: 변경 플래그 추가
         for (CommuTableTemplate template : templates) {
             wikiEditor.overwrite(sheetName + "\\" + template.title, template.toContent(), "봇에 의한 자동 수정");
