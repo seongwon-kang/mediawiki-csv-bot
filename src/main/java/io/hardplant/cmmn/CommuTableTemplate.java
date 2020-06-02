@@ -17,6 +17,14 @@ public class CommuTableTemplate {
 
         if (table.commus == null)
             return this;
+            
+        if (table.info != null) {
+            template.append("|info = " + table.info);
+        }
+
+        if (table.translator != null) {
+            template.append("|translator = " + table.translator);
+        }
 
         for (CommuRow row : table.commus) {
             this.addRow(row);
