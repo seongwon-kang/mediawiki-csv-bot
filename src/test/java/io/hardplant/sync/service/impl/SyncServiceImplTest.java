@@ -2,6 +2,7 @@ package io.hardplant.sync.service.impl;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +26,7 @@ public class SyncServiceImplTest {
     private SyncService syncService;
 
     @Test
-    public void getTemplateFromSheet() {
+    public void Test_getTemplateFromSheet() {
         assertNotNull(syncService);
 
         List<CommuTableTemplate> templates = syncService.getTemplateFromSheet("사쿠라기 마노");
@@ -35,12 +36,12 @@ public class SyncServiceImplTest {
 
 
     @Test
-    public void uploadWikiFromTemplateData() {
+    public void Test_uploadWikiFromTemplateData() {
         List<CommuTableTemplate> templates = getTestTemplates();
 
         assertEquals("P\\SR-1\\ショッピング日和", templates.get(0).title);
-        
-        syncService.logonWiki("Hardplant2", "1q2w3e4r");
+
+        assertTrue(syncService.logonWiki("Hardplant2", "1q2w3e4r"));
         
         syncService.syncWikiFromTemplates(templates);
     }
