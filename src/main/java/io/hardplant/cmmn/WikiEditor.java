@@ -17,6 +17,10 @@ public class WikiEditor {
     public WikiEditor() {
         wiki = new Wiki.Builder().build();
     }
+    
+    public WikiEditor(Wiki wiki) {
+        this.wiki = wiki;
+    }
 
     public WikiEditor(String id, String pwd) {
         wiki = new Wiki.Builder().build();
@@ -33,7 +37,7 @@ public class WikiEditor {
     }
 
     public boolean logon() {
-        if (isLoggedOn) {
+        if (!isLoggedOn) {
             wiki.login(id, pwd);
             isLoggedOn = true;
         }
