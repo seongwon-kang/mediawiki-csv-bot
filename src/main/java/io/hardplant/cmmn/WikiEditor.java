@@ -38,8 +38,8 @@ public class WikiEditor {
 
     public boolean logon() {
         if (!isLoggedOn) {
-            wiki.login(id, pwd);
-            isLoggedOn = true;
+            
+            isLoggedOn = wiki.login(id, pwd);
         }
         return isLoggedOn;
     }
