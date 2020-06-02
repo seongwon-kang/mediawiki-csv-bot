@@ -17,8 +17,17 @@ public class WikiEditor {
     }
 
     public WikiEditor(String id, String pwd) {
+        wiki = new Wiki.Builder().build();
+
         this.id = id;
         this.pwd = pwd;
+    }
+
+    public boolean logon(String id, String pwd) {
+        this.id = id;
+        this.pwd = pwd;
+
+        return this.logon();
     }
 
     public boolean logon() {
