@@ -44,14 +44,14 @@ public class SyncServiceImpl implements SyncService {
     public int syncWikiWithSheet(String sheetName) {
         List<CommuTableTemplate> templates = getTemplateFromSheet(sheetName);
             
-        return syncWikiFromTemplates(templates);
+        return syncWikiFromTemplates(sheetName, templates);
     }
     
     @Override
-    public int syncWikiFromTemplates(List<CommuTableTemplate> templates) {
+    public int syncWikiFromTemplates(String sheetName, List<CommuTableTemplate> templates) {
 
         for (CommuTableTemplate template : templates) {
-            wikiEditor.overwrite(template.title, template.toContent(), "봇에 의한 자동 수정");
+            wikiEditor.overwrite(sheetName + '/' + template.title.replace('\\', '/'), template.toContent(), "봇에 의한 자동 수정");
         }
             
         return templates.size();

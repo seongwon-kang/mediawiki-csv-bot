@@ -10,6 +10,7 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 
@@ -24,6 +25,12 @@ public class SyncServiceImplTest {
 
     @Resource
     private SyncService syncService;
+
+    @Value("${wiki.id}")
+    private String id;
+
+    @Value("${wiki.pwd}")
+    private String pwd;
 
     @Test
     public void Test_getTemplateFromSheet() {
@@ -43,7 +50,15 @@ public class SyncServiceImplTest {
 
         assertTrue(syncService.logonWiki("Hardplant2", "1q2w3e4r"));
         
-        syncService.syncWikiFromTemplates(templates);
+        syncService.syncWikiFromTemplates("", templates);
+    }
+    
+    @Test
+    public void Test_syncWikiWithSheet() {
+        assertEquals("", "\\".replace("\\", ""));
+        assertTrue(syncService.logonWiki(id, pwd));
+        
+        syncService.syncWikiWithSheet("사쿠라기 마노");
     }
 
     private List<CommuTableTemplate> getTestTemplates() {
