@@ -51,7 +51,24 @@ public class SyncServiceImpl implements SyncService {
     public int syncWikiFromTemplates(String sheetName, List<CommuTableTemplate> templates) {
 
         for (CommuTableTemplate template : templates) {
-            wikiEditor.overwrite(sheetName + '/' + template.title.replace('\\', '/'), template.toContent(), "봇에 의한 자동 수정");
+            wikiEditor.overwrite(sheetName + '/' + template.title.replace('\\', '/'), 
+            "< [["+ sheetName + "| 이전 페이지]]\n\n"
+            + "{{틀: 커뮤 요약|First = "
+                + "|Select = "
+                + "|S1 = "
+                + "|S1Da = 20"
+                + "|S2 = 이대로 끝내도 좋아?"
+                + "|S2Vi = 20"
+                + "|S3 = 다시 보러 갈래?"
+                + "|S3Vo = 20"
+                + "|Me = 10"
+                + "|Sp = 10"
+                + "}}\n\n"
+                + "== 커뮤 =="
+            + "\n\n"
+            + "\n{{커뮤니케이션:" + sheetName + '/' + template.title.replace('\\', '/') + "}}"
+            , "봇에 의한 자동 수정");
+            wikiEditor.overwrite("커뮤니케이션:" + sheetName + '/' + template.title.replace('\\', '/'), template.toContent(), "봇에 의한 자동 수정");
         }
             
         return templates.size();

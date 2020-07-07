@@ -61,7 +61,7 @@ public class CommuTableTemplate implements ITemplate {
     }
 
     public CommuTableTemplate addRow(String id, String character, String text, String trans) {
-        template.append("\n {{커뮤대사|id=").append(id).append("|name=").append(character).append("|text=").append(text.replaceAll("\\", "")).append("|trans=")
+        template.append("\n {{커뮤대사|id=").append(id).append("|name={{커뮤아이콘|").append(character).append("}}|text=").append(text.replace("\\", "")).append("|trans=")
                 .append(trans.replace("\\", "")).append("|").append("}}");
 
         return this;
