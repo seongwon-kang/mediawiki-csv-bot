@@ -64,9 +64,14 @@ public class SyncServiceImpl implements SyncService {
 
             // 본문 Overwrite
             wikiEditor.overwrite(sheetName + '/' + template.title.replace('\\', '/'), 
-            "{{틀: 커뮤 요약|"
-                + "\n|CommuNameJP = " + title
-                + "\n|CommuNameKR = "
+            "'''적절한 커뮤 요약 틀 추가바람'''"
+            + "\n '''[[커뮤니케이션:" + sheetName + '/' + template.title.replace('\\' , '/')+ "|데이터에]] 선택지 틀 추가바람'''"
+            + "\n{{select1}}"
+            + "\n{{select2}}"
+            + "\n{{select3}}"
+            + "{{틀: 커뮤 요약|"
+                + "\n| CommuNameJP = " + title
+                + "\n| CommuNameKR = "
                 + "\n| Choice1_JP = text_JP11"
                 + "\n| Choice1_KR = text_KR11"
                 + "\n| Choice1_Vo = 20"
@@ -117,6 +122,11 @@ public class SyncServiceImpl implements SyncService {
         }
 
         return writeCount;
+    }
+
+    @Override
+    public int syncCommonCommu(List<String> IdolNameKR) {
+        
     }
 
     @Override
