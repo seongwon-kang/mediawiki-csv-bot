@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -16,6 +17,7 @@ import org.springframework.test.context.ContextConfiguration;
 
 import io.hardplant.cmmn.impl.CommuTable;
 import io.hardplant.cmmn.impl.CommuTableTemplate;
+import io.hardplant.cmmn.impl.UnitUtills;
 import io.hardplant.sheet_parser.SheetTableConverter;
 import io.hardplant.sync.service.SyncService;
 
@@ -71,6 +73,21 @@ public class SyncServiceImplTest {
         }
     }
 
+    @Test
+    public void Test_syncRCardTemplatesOne() {
+        assertTrue(syncService.logonWiki(id, pwd));
+        List<String> idols = Arrays.asList("사쿠라기 마노");
+
+        syncService.syncRCardTemplates(idols);
+    }
+
+    @Test
+    public void Test_syncRCardTemplatesAll() {
+        assertTrue(syncService.logonWiki(id, pwd));
+        
+        syncService.syncRCardTemplates(UnitUtills.idolListKR);
+    }
+
     private List<CommuTableTemplate> getTestTemplates() {
         // Ready template
         List<CommuTableTemplate> templates= new ArrayList();
@@ -87,7 +104,7 @@ public class SyncServiceImplTest {
 
     @Test
     public void Test_syncRCardTemplate() {
-        
+
     }
     
     private List<CommuTable> getTables() {
