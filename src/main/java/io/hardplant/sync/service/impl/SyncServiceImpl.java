@@ -55,15 +55,14 @@ public class SyncServiceImpl implements SyncService {
             String title = splits[splits.length - 1];
             
             // 선택지 가져오기
-            
+
 
             // 커뮤데이터 Overwrite
             wikiEditor.overwrite("커뮤니케이션:" + sheetName + '/' + template.title.replace('\\', '/'), template.toContent(), "봇에 의한 자동 수정");
 
             // 본문 Overwrite
             wikiEditor.overwrite(sheetName + '/' + template.title.replace('\\', '/'), 
-            "< [["+ sheetName + "| 이전 페이지]]\n\n"
-            + "{{틀: 커뮤 요약|"
+            "{{틀: 커뮤 요약|"
                 + "\n|CommuNameJP = " + title
                 + "\n|CommuNameKR = "
                 + "\n| Choice1_JP = text_JP11"
@@ -86,6 +85,12 @@ public class SyncServiceImpl implements SyncService {
         }
             
         return templates.size();
+    }
+
+    public int syncRCardTemplates(List<String> IdolName) {
+        int writeCount = 0;
+
+        return writeCount;
     }
 
     @Override

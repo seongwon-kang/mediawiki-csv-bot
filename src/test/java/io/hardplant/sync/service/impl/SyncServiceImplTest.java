@@ -84,6 +84,11 @@ public class SyncServiceImplTest {
         }
         return templates;
     }
+
+    @Test
+    public void Test_syncRCardTemplate() {
+        
+    }
     
     private List<CommuTable> getTables() {
         SheetTableConverter converter = new SheetTableConverter();
