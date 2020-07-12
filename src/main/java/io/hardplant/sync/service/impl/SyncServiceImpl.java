@@ -49,26 +49,40 @@ public class SyncServiceImpl implements SyncService {
     
     @Override
     public int syncWikiFromTemplates(String sheetName, List<CommuTableTemplate> templates) {
-
+        
         for (CommuTableTemplate template : templates) {
+            String[] splits = template.title.split("/");
+            String title = splits[splits.length - 1];
+            
+            // 선택지 가져오기
+            
+
+            // 커뮤데이터 Overwrite
+            wikiEditor.overwrite("커뮤니케이션:" + sheetName + '/' + template.title.replace('\\', '/'), template.toContent(), "봇에 의한 자동 수정");
+
+            // 본문 Overwrite
             wikiEditor.overwrite(sheetName + '/' + template.title.replace('\\', '/'), 
             "< [["+ sheetName + "| 이전 페이지]]\n\n"
-            + "{{틀: 커뮤 요약|First = "
-                + "|Select = "
-                + "|S1 = "
-                + "|S1Da = 20"
-                + "|S2 = 이대로 끝내도 좋아?"
-                + "|S2Vi = 20"
-                + "|S3 = 다시 보러 갈래?"
-                + "|S3Vo = 20"
-                + "|Me = 10"
-                + "|Sp = 10"
+            + "{{틀: 커뮤 요약|"
+                + "\n|CommuNameJP = " + title
+                + "\n|CommuNameKR = "
+                + "\n| Choice1_JP = text_JP11"
+                + "\n| Choice1_KR = text_KR11"
+                + "\n| Choice1_Vo = 20"
+                + "\n| Choice2_JP = text_JP12"
+                + "\n| Choice2_KR = text_KR12"
+                + "\n| Choice2_Da = 20"
+                + "\n| Choice3_JP = text_JP13"
+                + "\n| Choice3_KR = text_KR13"
+                + "\n| Choice3_Vi = 20"
+                + "\n| Me = 5"
+                + "\n| Sp = 10"
                 + "}}\n\n"
                 + "== 커뮤 =="
             + "\n\n"
             + "\n{{커뮤니케이션:" + sheetName + '/' + template.title.replace('\\', '/') + "}}"
             , "봇에 의한 자동 수정");
-            wikiEditor.overwrite("커뮤니케이션:" + sheetName + '/' + template.title.replace('\\', '/'), template.toContent(), "봇에 의한 자동 수정");
+            
         }
             
         return templates.size();
