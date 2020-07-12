@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class UnitUtills {
-    private final static List<String> idolList = Arrays.asList("櫻木真乃", "風野灯織", "八宮めぐる",
+    public final static List<String> idolListJP = Arrays.asList("櫻木真乃", "風野灯織", "八宮めぐる",
 
             "月岡恋鐘", "幽谷霧子", "白瀬咲耶", "田中摩美々", "三峰結華",
 
@@ -17,10 +17,10 @@ public class UnitUtills {
 
             "浅倉透", "樋口円香", "福丸小糸", "市川雛菜");
 
-    public static String getUnitByName(String nameJP) {
+    public static String getUnitByJPName(String nameJP) {
         final String[] unitName = { "illumi", "antica", "afterschool", "alstromeria", "straylight", "noctchill" };
 
-        int idx = idolList.indexOf(nameJP);
+        int idx = idolListJP.indexOf(nameJP);
 
         if (idx < 3) return unitName[0]; // illumi
         if (idx < 8) return unitName[1]; // antica
