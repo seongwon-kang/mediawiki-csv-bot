@@ -61,7 +61,7 @@ public class SyncServiceImpl implements SyncService {
             
             // 선택지 가져오기
 
-            if (!wikiEditor.docExists(sheetName + '/' + template.title.replace('\\', '/')) {
+            if (!wikiEditor.docExists(sheetName + '/' + template.title.replace('\\', '/'))) {
                 // 커뮤데이터 Overwrite
                 wikiEditor.overwrite("커뮤니케이션:" + sheetName + '/' + template.title.replace('\\', '/'), template.toContent(), "봇에 의한 자동 수정");
     
