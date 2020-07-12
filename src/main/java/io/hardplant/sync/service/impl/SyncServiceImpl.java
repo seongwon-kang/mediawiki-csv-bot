@@ -61,36 +61,37 @@ public class SyncServiceImpl implements SyncService {
             
             // 선택지 가져오기
 
-
-            // 커뮤데이터 Overwrite
-            wikiEditor.overwrite("커뮤니케이션:" + sheetName + '/' + template.title.replace('\\', '/'), template.toContent(), "봇에 의한 자동 수정");
-
-            // 본문 Overwrite
-            wikiEditor.overwrite(sheetName + '/' + template.title.replace('\\', '/'), 
-            "'''적절한 커뮤 요약 틀 추가바람'''"
-            + "\n '''[[커뮤니케이션:" + sheetName + '/' + template.title.replace('\\' , '/')+ "|데이터에]] 선택지 틀 추가바람'''"
-            + "\n{{선택지 1}}"
-            + "\n{{선택지 2}}"
-            + "\n{{선택지 3}}"
-            + "{{틀: 커뮤 요약|"
-                + "\n| CommuNameJP = " + title
-                + "\n| CommuNameKR = "
-                + "\n| Choice1_JP = text_JP11"
-                + "\n| Choice1_KR = text_KR11"
-                + "\n| Choice1_Vo = 20"
-                + "\n| Choice2_JP = text_JP12"
-                + "\n| Choice2_KR = text_KR12"
-                + "\n| Choice2_Da = 20"
-                + "\n| Choice3_JP = text_JP13"
-                + "\n| Choice3_KR = text_KR13"
-                + "\n| Choice3_Vi = 20"
-                + "\n| Me = 5"
-                + "\n| Sp = 10"
-                + "}}\n\n"
-                + "== 커뮤 =="
-            + "\n\n"
-            + "\n{{커뮤니케이션:" + sheetName + '/' + template.title.replace('\\', '/') + "}}"
-            , "봇에 의한 자동 수정");
+            if (!wikiEditor.docExists(sheetName + '/' + template.title.replace('\\', '/')) {
+                // 커뮤데이터 Overwrite
+                wikiEditor.overwrite("커뮤니케이션:" + sheetName + '/' + template.title.replace('\\', '/'), template.toContent(), "봇에 의한 자동 수정");
+    
+                // 본문 Overwrite
+                wikiEditor.overwrite(sheetName + '/' + template.title.replace('\\', '/'), 
+                "'''적절한 커뮤 요약 틀 추가바람'''"
+                + "\n [[커뮤니케이션:" + sheetName + '/' + template.title.replace('\\' , '/')+ "|데이터에]] 선택지 틀 추가바람"
+                + "\n {{선택지 1}}"
+                + "\n {{선택지 2}}"
+                + "\n {{선택지 3}}"
+                + "{{틀: 커뮤 요약|"
+                    + "\n| CommuNameJP = " + title
+                    + "\n| CommuNameKR = "
+                    + "\n| Choice1_JP = text_JP11"
+                    + "\n| Choice1_KR = text_KR11"
+                    + "\n| Choice1_Vo = 20"
+                    + "\n| Choice2_JP = text_JP12"
+                    + "\n| Choice2_KR = text_KR12"
+                    + "\n| Choice2_Da = 20"
+                    + "\n| Choice3_JP = text_JP13"
+                    + "\n| Choice3_KR = text_KR13"
+                    + "\n| Choice3_Vi = 20"
+                    + "\n| Me = 5"
+                    + "\n| Sp = 10"
+                    + "}}\n\n"
+                    + "== 커뮤 =="
+                + "\n\n"
+                + "\n{{커뮤니케이션:" + sheetName + '/' + template.title.replace('\\', '/') + "}}"
+                , "봇에 의한 자동 수정");
+            }
             
         }
             
