@@ -3,6 +3,7 @@ package io.hardplant.sync.service.impl;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -89,6 +90,30 @@ public class SyncServiceImplTest {
         assertTrue(syncService.logonWiki(id, pwd));
         
         syncService.syncRCardTemplates(UnitUtills.idolListKR);
+    }
+
+    @Test
+    public void Test_syncCommonCommuOne() {
+        assertTrue(syncService.logonWiki(id, pwd));
+        List<String> idols = Arrays.asList("세리자와 아사히");
+
+        try {
+            syncService.syncCommonCommu(idols);
+        } catch (Exception e) {
+            e.printStackTrace();
+            fail();
+        }
+    }
+
+    @Test
+    public void Test_syncCommonCommuAll() {
+        assertTrue(syncService.logonWiki(id, pwd));
+
+        try {
+            syncService.syncCommonCommu(UnitUtills.idolListKR);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private List<CommuTableTemplate> getTestTemplates() {

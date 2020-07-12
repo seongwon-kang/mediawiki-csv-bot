@@ -79,7 +79,7 @@ public class DataSheetDAO {
         // Build a new authorized API client service.
         final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
         final String spreadsheetId = "1nTacEeqPLGueGUwiTPw5KnQa1c2U0v3_M9vI7TmHl6Q";
-        final String range = sheetName + "!W94:W129";
+        final String range = sheetName + "!W94:X129";
         Sheets service = new Sheets.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
                 .setApplicationName(APPLICATION_NAME).build();
         ValueRange response = service.spreadsheets().values().get(spreadsheetId, range).execute();

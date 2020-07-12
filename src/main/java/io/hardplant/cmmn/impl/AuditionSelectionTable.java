@@ -1,6 +1,6 @@
 package io.hardplant.cmmn.impl;
 
-public class MorningSelectionTable {
+public class AuditionSelectionTable {
     int CommuName;
     String IntroJP;
     String IntroKR;
@@ -11,6 +11,7 @@ public class MorningSelectionTable {
     String Choice2_KR;
     String Choice3_JP;
     String Choice3_KR;
+
 
     public String getIntroJP() {
         return IntroJP;
@@ -76,11 +77,13 @@ public class MorningSelectionTable {
         Choice3_KR = choice3_KR;
     }
 
+    public int getCommuName() {
+        return CommuName;
+    }
+
     public void setCommuName(int commuName) {
         CommuName = commuName;
     }
 
-    public int getCommuName() {
-        return CommuName;
-    }
+    
 }

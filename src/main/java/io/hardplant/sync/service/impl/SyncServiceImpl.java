@@ -9,10 +9,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import io.hardplant.cmmn.WikiEditor;
+import io.hardplant.cmmn.impl.CommonCommuTemplate;
 import io.hardplant.cmmn.impl.CommuTable;
 import io.hardplant.cmmn.impl.CommuTableTemplate;
 import io.hardplant.cmmn.impl.RCardTemplate;
 import io.hardplant.cmmn.impl.UnitUtills;
+import io.hardplant.sheet_parser.DataSheetDAO;
+import io.hardplant.sheet_parser.SheetCommonCommuConverter;
 import io.hardplant.sheet_parser.SheetDAO;
 import io.hardplant.sheet_parser.SheetTableConverter;
 import io.hardplant.sync.service.SyncService;
@@ -66,9 +69,9 @@ public class SyncServiceImpl implements SyncService {
             wikiEditor.overwrite(sheetName + '/' + template.title.replace('\\', '/'), 
             "'''적절한 커뮤 요약 틀 추가바람'''"
             + "\n '''[[커뮤니케이션:" + sheetName + '/' + template.title.replace('\\' , '/')+ "|데이터에]] 선택지 틀 추가바람'''"
-            + "\n{{select1}}"
-            + "\n{{select2}}"
-            + "\n{{select3}}"
+            + "\n{{선택지 1}}"
+            + "\n{{선택지 2}}"
+            + "\n{{선택지 3}}"
             + "{{틀: 커뮤 요약|"
                 + "\n| CommuNameJP = " + title
                 + "\n| CommuNameKR = "
@@ -125,8 +128,28 @@ public class SyncServiceImpl implements SyncService {
     }
 
     @Override
-    public int syncCommonCommu(List<String> IdolNameKR) {
-        
+    public int syncCommonCommu(List<String> IdolNameKR) throws Exception {
+        DataSheetDAO dao = new DataSheetDAO();
+
+        for (String krName : IdolNameKR) {
+            
+            SheetCommonCommuConverter converter = new SheetCommonCommuConverter();
+            
+            CommonCommuTemplate template = new CommonCommuTemplate();
+            template.idolName = krName;
+            
+            List<List<Object>> data1 = dao.getMorningDatas(UnitUtills.getKRNameShort(template.idolName) + "_P");
+            
+            template.morningTables = converter.sheetToMorningTables(data1);
+
+            List<List<Object>> data2 = dao.getAuditionDatas(UnitUtills.getKRNameShort(template.idolName) + "_P");
+            
+            template.auditionTables = converter.sheetToAuditionTables(data2);
+            
+            wikiEditor.overwrite("틀:공통 커뮤/" + krName, template.toContent(), "봇에 의한 자동 수정");
+        }
+
+        return 0;
     }
 
     @Override

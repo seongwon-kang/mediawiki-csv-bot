@@ -9,9 +9,15 @@ import org.junit.jupiter.api.Test;
 public class DataSheetDAOTest {
     
     @Test
-    public void test() throws Exception {
+    public void testMorningData() throws Exception {
         List<List<Object>> datas = new DataSheetDAO().getMorningDatas("마노_P");
         
-        assertEquals(0, datas.get(0).size());
+        assertEquals(3, datas.get(0).size());
+    }
+    @Test
+    public void testAuditionData() throws Exception {
+        List<List<Object>> datas = new DataSheetDAO().getAuditionDatas("마노_P");
+        
+        assertEquals(2, datas.get(0).size());
     }
 }
